@@ -1,14 +1,10 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package cajero;
 
 import java.awt.FlowLayout;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.GridLayout;
+import java.awt.LayoutManager;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 
@@ -16,6 +12,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.JTextField;
+
 import javax.swing.WindowConstants;
 import javax.swing.border.EmptyBorder;
 
@@ -24,10 +21,10 @@ public class Cajero extends JFrame {
     JTextField pantalla;
     String cuenta;
     JPanel panelCrear, panelAceptar, panelNumeros;
-    JButton crear, ok, canc;
+    JButton crear, ok, canc, ingresar;
     
     public Cajero(){
-    super();
+    setLayout(null);
     setSize(300,300);
     setTitle("Cajero");
     setDefaultCloseOperation(WindowConstants.EXIT_ON_CLOSE);
@@ -38,32 +35,26 @@ public class Cajero extends JFrame {
     
     pantalla = new JTextField("0", 40);
     pantalla.setHorizontalAlignment(JTextField.RIGHT);
-    pantalla.setEditable(true);
-    pantalla.setSize(295,50);
+    pantalla.setEditable(false);
+    //pantalla.setSize(295,50);
     pantalla.setBorder(new EmptyBorder(4, 4, 4, 4));
     pantalla.setBackground(Color.WHITE);
     panel.add(pantalla);
     
     panelCrear = new JPanel();
-    crear = new JButton("CREAR");
-    crear.setSize(80,20);
-    crear.setLocation(110, 60);
-    panel.add(crear);
+    panel.setLayout(new GridLayout(1,3));
+    crear = new JButton("CREAR CUENTA");
+    ingresar = new JButton("INGRESAR");
+    //crear.setSize(50,20);
+    //crear.setLocation(110, 60);
+    crear.setVisible(true);
+    ingresar.setVisible(true);
+    panelCrear.add(crear);
+    panelCrear.add(ingresar);
+    panel.add(panelCrear);
     
-    panelNumeros = new JPanel();
-		panelNumeros.setLayout(new GridLayout(4, 3));
-		panelNumeros.setBorder(new EmptyBorder(4, 4, 4, 4));
-
-		for (int n = 9; n >= 0; n--) {
-			nuevoBotonNumerico("" + n);
-		}
-
-		nuevoBotonNumerico(".");
     
-    panel.add(panelNumeros);
-    panelNumeros.setLocation(60,100);
-
-    panelAceptar = new JPanel();
+    /*panelAceptar = new JPanel();
     ok = new JButton("OK");
     ok.setSize(80,20);
     ok.setLocation(50, 240);
@@ -72,7 +63,7 @@ public class Cajero extends JFrame {
     canc.setLocation(150, 240);
     
     panel.add(ok);
-    panel.add(canc);
+    panel.add(canc);*/
     
     validate();
     }
@@ -91,5 +82,9 @@ public class Cajero extends JFrame {
 
 		panelNumeros.add(btn);
 	}
+
+    private LayoutManager GridLayout(int i, int i0) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
 }
 
